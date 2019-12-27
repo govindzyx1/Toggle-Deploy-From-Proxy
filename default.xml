@@ -1,0 +1,50 @@
+<ProxyEndpoint name='default'>
+  <Description>Default Proxy endpoint</Description>
+  <HTTPProxyConnection>
+    <BasePath>/azure-eventhubs-sastoken</BasePath>
+    <Properties/>
+    <VirtualHost>secure</VirtualHost>
+  </HTTPProxyConnection>
+
+  <PreFlow name="PreFlow">
+      <Request/>
+      <Response/>
+  </PreFlow>
+  <PostFlow name="PostFlow">
+      <Request/>
+      <Response>
+        <Step><Name>AM-CleanResponseHeaders</Name></Step>
+      </Response>
+  </PostFlow>
+
+  <Flows>
+    <Flow name='generate token'>
+      <Description>generate a SAS token</Description>
+      <Request>
+        <Step>
+          <Name>AM-KeyData</Name>
+        </Step>
+        <Step>
+          <Name>Java-GenerateSasToken-1</Name>
+        </Step>
+      </Request>
+      <Response>
+        <Step>
+          <Name>AM-Response</Name>
+        </Step>
+      </Response>
+      <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "POST")</Condition>
+    </Flow>
+
+    <Flow name='unknown request'>
+      <Request>
+        <Step><Name>RF-UnknownRequest</Name></Step>
+      </Request>
+      <Response/>
+    </Flow>
+
+  </Flows>
+
+  <RouteRule name='NoRouteRule'/>
+
+</ProxyEndpoint>

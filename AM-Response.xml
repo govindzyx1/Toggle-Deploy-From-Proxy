@@ -1,0 +1,13 @@
+<AssignMessage name='AM-Response'>
+  <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+  <Set>
+    <Payload contentType='text/plain'>
+string-to-sign: {sas.string-to-sign}
+
+token: {sas.token}
+
+</Payload>
+    <StatusCode>200</StatusCode>
+    <ReasonPhrase>OK</ReasonPhrase>
+  </Set>
+</AssignMessage>

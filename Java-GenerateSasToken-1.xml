@@ -1,0 +1,11 @@
+<JavaCallout name='Java-GenerateSasToken-1'>
+  <Properties>
+    <Property name="resource-uri">https://contoso.servicebus.windows.net/</Property>
+    <Property name="expiry">7d</Property>
+    <Property name="debug">true</Property>
+    <Property name="key">{private.shared_access_key}</Property>
+    <Property name="key-name">{shared_access_key_name}</Property>
+  </Properties>
+  <ClassName>com.google.apigee.edgecallouts.azureeventhubs.SasCallout</ClassName>
+  <ResourceURL>java://apigee-azure-eventhubs-sas-callout-20191218.jar</ResourceURL>
+</JavaCallout>
